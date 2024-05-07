@@ -1,0 +1,121 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #F9FBF9;
+	/* background: black; */
+	font-family: sans-serif;
+}
+
+ul {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+	margin: 0 5px;
+}
+
+ul li a .fa {
+	font-size: 50px;
+	line-height: 80px;
+	transition: 0.5s;
+	padding-right: 14px;
+	color: white;
+	text-shadow: -3px 6px grey;
+}
+
+ul li a span {
+	position: absolute;
+	top: 38px;
+	letter-spacing: 4px;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.5s;
+	color: white;
+	/* text-shadow: -3px 6px grey; */
+}
+
+ul li a {
+	text-decoration: none;
+	display: absolute;
+	display: block;
+	width: 210px;
+	height: 80px;
+	background: #00A9FE;
+	text-align: left;
+	padding: 20px;
+	transition: 0.5s;
+}
+
+#first {
+	position: absolute;
+	left: -249px;
+	top: 0px;
+	z-index: 100 !important;
+}
+
+#third {
+	position: absolute;
+	left: 249px;
+	top: 0px;
+	z-index: -100 !important;
+}
+
+ul li a:before {
+	content: '';
+	position: absolute;
+	top: 10px;
+	left: -20px;
+	height: 101%;
+	width: 20px;
+	background: #FD6BB6;
+	transform: rotate(0deg) skewY(-45deg);
+}
+
+ul li a:after {
+	content: '';
+	position: absolute;
+	bottom: -20px;
+	left: -10px;
+	height: 20px;
+	width: 100%;
+	background: #D9EB4B;
+	transform: 0.5s;
+	transform: rotate(0deg) skewX(-45deg);
+}
+
+ul li a:hover {
+	transform: rotate(0deg) skew(0) translate(-20px, 19px);
+	background-color: #EF0888;
+}
+
+
+ul li a:hover:after {
+	background: none;
+	top: 120px;
+	transition: All 0.4s ease;
+}
+
+ul li a:hover:before {
+	background: none;
+	right: 0px;
+	position: absolute;
+	transition: All 0.4s ease;
+}
+
+ul li:hover .fa {
+	color: rgb(235, 233, 233) !important;
+}
+
+ul li:hover span {
+	color: rgb(235, 233, 233) !important;
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создать команду</title>
+</head>
+<body>
+    <h1>Создать команду</h1>
+<form method="post">
+        {% csrf_token %}
+        <label for="name">Название команды:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="description">Описание команды:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+        <button type="submit">Создать</button>
+
+    </form>
+</body>
+</html>

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-<body>
   <ul>
     <li>
         <a href="{% url 'aza1' %}" id="first"><i class="fa fa-copy"></i><span>Турниры</span></a>
@@ -19,7 +18,11 @@
     <li>
         <a href="{% url 'aza3' %}" id="third"><i class="fa fa-paste"></i><span>Результ</span></a>
     </li>
+      <li>
+          <a href="{% url 'command_list' %}" id="title"><i class="fa fa-title"></i><span>CREATE</span></a>
+      </li>
 </ul>
+
 </body>
 </html>
 

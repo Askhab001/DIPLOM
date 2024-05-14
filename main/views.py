@@ -1,7 +1,4 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .models import Command
-from .forms import CommandForm
+from django.shortcuts import render
 
 
 def index(request):
@@ -20,20 +17,10 @@ def asa(request):
     return render(request, 'aza3.html')
 
 
-@login_required
-def create_command(request):
-    if request.method == 'POST':
-        form = CommandForm(request.POST)
-        if form.is_valid():
-            command = form.save(commit=False)
-            command.author = request.user
-            command.save()
-            return redirect('command_list')
-    else:
-        form = CommandForm()
-    return render(request, 'command1.html', {'form': form})
+def ada(request):
+    return render(request, 'command1.html')
 
 
-def command_list(request):
-    commands = Command.objects.all()
-    return render(request, 'command.html', {'command': commands})
+def ava(request):
+    return render(request, 'command.html')
+

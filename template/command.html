@@ -1,18 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Создать команду</title>
+    <link rel="stylesheet" href="{% static 'command.css' %}">
 </head>
 <body>
-    <h1>Создать команду</h1>
-<form method="post">
-        {% csrf_token %}
-        <label for="name">Название команды:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="description">Описание команды:</label><br>
-        <textarea id="description" name="description"></textarea><br>
-        <button type="submit">Создать</button>
+<form action="/submit-registration" method="post">
+    <h2>Register Command</h2>
+    <label for="username">Nikname:</label>
+    <input type="text" id="username" name="username" required>
 
-    </form>
+    <label for="password">Gamers number:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button><a href="{% url 'command1' %}">Register</a></button>
+</form>
+
 </body>
 </html>

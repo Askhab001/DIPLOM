@@ -1,8 +1,8 @@
 from django import forms
-from .models import Command
+from .models import Post
 
 
-class CommandForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
-        model = Command
-        fields = ['name', 'description']
+        model = Post
+        fields = ['title', 'content']

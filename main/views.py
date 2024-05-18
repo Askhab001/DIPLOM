@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import PostForm
-from .models import Post
+from .models import LOL
 
 
 def lord(request):
@@ -23,9 +23,6 @@ def asa(request):
     return render(request, 'aza3.html')
 
 
-def ada(request):
-    return render(request, 'command1.html')
-
 
 def create_post(request):
     if request.method == 'POST':
@@ -39,5 +36,9 @@ def create_post(request):
 
 
 def post_list(request):
-    posts = Post.objects.all()
-    return render(request, 'command1.html', {'posts': posts})
+    posts = LOL.objects.all()
+    return render(request, 'A2.html', {'posts': posts})
+
+
+def apa(request):
+    return render(request, 'A1.html')

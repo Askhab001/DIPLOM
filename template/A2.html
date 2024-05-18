@@ -1,0 +1,93 @@
+{% for post in posts %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Участники Киберспортивного Турнира</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff9800;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444444;
+        }
+        th {
+            background-color: #333333;
+        }
+        tr:nth-child(even) {
+            background-color: #3a3a3a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Участники Киберспортивного Турнира</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Имя игрока</th>
+                    <th>Команда</th>
+                    <th>Игра</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>ASKHAB </td>
+                    <td>FR13NDS</td>
+                    <td>FREE F1RE</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>AZIM</td>
+                    <td>LORD'S</td>
+                    <td>FREE F1RE</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>NIKITA</td>
+                    <td>Team Spirit</td>
+                    <td>Dota 2</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>ATABEK</td>
+                    <td>Gambit Esports</td>
+                    <td>League of Legends</td>
+                </tr>
+                <tr>
+
+                    <td>{{ post.name }}</td>
+                    <td>{{ post.namecommand }}</td>
+                    <td>{{ post.game }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endfor %}
+</body>
+</html>

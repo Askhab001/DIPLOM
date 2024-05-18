@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация и выбор команды</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        select {
+            padding: 10px;
+            margin: 20px 0;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Регистрация команды</h1>
+        <form id="team-form">
+            <input type="text" id="team-name" placeholder="Введите название команды" required>
+            <button type="submit">Зарегистрировать команду</button>
+        </form>
+
+    <script>
+        document.getElementById('team-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const teamNameInput = document.getElementById('team-name');
+            const teamName = teamNameInput.value.trim();
+
+            if (teamName) {
+                const teamSelect = document.getElementById('team-select');
+                const newOption = document.createElement('option');
+                newOption.value = teamName;
+                newOption.textContent = teamName;
+                teamSelect.appendChild(newOption);
+                teamNameInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-{% for post in posts %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -40,6 +39,23 @@
         tr:nth-child(even) {
             background-color: #3a3a3a;
         }
+        select {
+            background-color: #3a3a3a;
+            color: #ffffff;
+            border: 1px solid #444444;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #ff9800;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -48,46 +64,45 @@
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Имя игрока</th>
                     <th>Команда</th>
                     <th>Игра</th>
                 </tr>
             </thead>
             <tbody>
+                {% for post in posts %}
                 <tr>
-                    <td>1</td>
-                    <td>ASKHAB </td>
-                    <td>FR13NDS</td>
-                    <td>FREE F1RE</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>AZIM</td>
-                    <td>LORD'S</td>
-                    <td>FREE F1RE</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>NIKITA</td>
-                    <td>Team Spirit</td>
-                    <td>Dota 2</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>ATABEK</td>
-                    <td>Gambit Esports</td>
-                    <td>League of Legends</td>
-                </tr>
-                <tr>
-
                     <td>{{ post.name }}</td>
-                    <td>{{ post.namecommand }}</td>
+                    <td>
+                        <select id="team-{{ post.id }}">
+                            <option value="">-- Выберите команду --</option>
+                        </select>
+                    </td>
                     <td>{{ post.game }}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
+        <button id="save-teams">Сохранить изменения</button>
     </div>
-{% endfor %}
+
+    <script>
+        const saveTeamsButton = document.getElementById('save-teams');
+
+        saveTeamsButton.addEventListener('click', () => {
+            const teamsData = {};
+
+            const playerRows = document.querySelectorAll('tbody tr');
+            playerRows.forEach(row => {
+                const playerName = row.querySelector('td:first-child').textContent;
+                const selectedTeam = row.querySelector('select').value;
+
+                teamsData[playerName] = selectedTeam;
+            });
+
+
+            console.log(teamsData);
+        });
+    </script>
 </body>
 </html>

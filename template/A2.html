@@ -75,7 +75,7 @@
                     <td>{{ post.name }}</td>
                     <td>
                         <select id="team-{{ post.id }}">
-                            <option value="">-- Выберите команду --</option>
+                            <option value="">Выберите команду</option>
                         </select>
                     </td>
                     <td>{{ post.game }}</td>
@@ -83,7 +83,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <button id="save-teams">Сохранить изменения</button>
+        <a href="{% url 'A3' %}"><button id="save-teams">Сохранить изменения</button></a>
     </div>
 
     <script>

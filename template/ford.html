@@ -1,28 +1,13 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Управление турнирами</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Register</title>
 </head>
 <body>
-  <ul>
-    <li>
-        <a href="{% url 'aza1' %}" id="first"><i class="fa fa-copy"></i><span>Турниры</span></a>
-    </li>
-    <li>
-        <a href="{% url 'aza2' %}" id="second"><i class="fa fa-cut"></i><span>Игроки</span></a>
-    </li>
-    <li>
-        <a href="{% url 'aza3' %}" id="third"><i class="fa fa-paste"></i><span>Результ</span></a>
-    </li>
-      <li>
-          <a href="{% url 'command' %}" id="title"><i class="fa fa-title"></i><span>CREATE</span></a>
-      </li>
-</ul>
+{% for tournament in tournaments %}
+    <h2>{{ tournament.title }}</h2>
+    <p>{{ tournament.description }}</p>
 
+{% endfor %}
 </body>
 </html>
-

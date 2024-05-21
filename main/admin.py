@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import LOL
+from .models import Tournament
 
-admin.site.register(LOL)
+admin.site.register(Tournament)
+
+
+
+
 

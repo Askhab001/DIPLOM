@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .forms import PostForm
-from .models import LOL
+from .models import Tournament, Participant, Schedule, Result
 
 
 def lord(request):
@@ -23,7 +23,6 @@ def asa(request):
     return render(request, 'aza3.html')
 
 
-
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -42,3 +41,17 @@ def post_list(request):
 
 def apa(request):
     return render(request, 'A1.html')
+
+
+def tournament_list(request):
+    tournaments = Tournament.objects.all()
+    return render(request, 'command.html', {'tournaments': tournaments})
+
+
+def tournament_detail(request, pk):
+    tournament = Tournament.objects.get(pk=pk)
+    participants = Participant.objects.filter(tournament=tournament)
+    schedule = Schedule.objects.get(tournament=tournament)
+    results = Result.objects.filter(tournament=tournament)
+    return render(request, 'command1.html',
+                  {'tournament': tournament, 'participants': participants, 'schedule': schedule, 'results': results})

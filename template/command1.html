@@ -7,8 +7,27 @@
     <title>Успех</title>
 </head>
 <body>
+<!-- templates/tournaments/tournament_detail.html -->
 <h2>{{ tournament.title }}</h2>
 <p>{{ tournament.description }}</p>
+<h3>Participants</h3>
+<ul>
+    {% for participant in participants %}
+        <li>{{ participant.user.username }}</li>
+    {% endfor %}
+</ul>
+<h3>Schedule</h3>
+<ul>
+    {% for match in schedule %}
+        <li>{{ match.match_date }} - {{ match.details }}</li>
+    {% endfor %}
+</ul>
+<h3>Results</h3>
+<ul>
+    {% for result in results %}
+        <li>{{ result.details }}</li>
+    {% endfor %}
+</ul>
 
 </body>
 </html>

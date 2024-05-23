@@ -1,17 +1,17 @@
-from . import views
 from django.urls import path
-from .views import create_post, post_list
+from .views import (
+    TournamentListView,
+    TournamentDetailView,
+    TournamentCreateView,
+    TournamentUpdateView,
+    TournamentDeleteView
+)
 
 urlpatterns = [
-    path('aza/', views.ford),
-    path('v1/', views.main, name='aza1'),
-    path('v2/', views.aza, name='aza2'),
-    path('v3/', views.asa, name='aza3'),
-    path('main/', create_post, name='command'),
-    path('posts/', post_list, name='command1'),
-    path('A1/', views.apa, name='A1'),
-    path('A2/', views.post_list, name='A2'),
-    path('', views.tournament_list, name='command'),
-    path('tournament/<int:pk>/', views.tournament_detail, name='command1'),
+    path('', TournamentListView.as_view(), name='A!'),
+    path('tournament/<int:pk>/', TournamentDetailView.as_view(), name='command1'),
+    path('tournament/new/', TournamentCreateView.as_view(), name='command'),
+    path('tournament/<int:pk>/edit/', TournamentUpdateView.as_view(), name='A2'),
+    path('tournament/<int:pk>/delete/', TournamentDeleteView.as_view(), name='tournament_delete'),
+]
 
-  ]

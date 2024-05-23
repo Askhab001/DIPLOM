@@ -4,105 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Участники Киберспортивного Турнира</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1e1e1e;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #2a2a2a;
-            border-radius: 8px;
-        }
-        h1 {
-            text-align: center;
-            color: #ff9800;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #444444;
-        }
-        th {
-            background-color: #333333;
-        }
-        tr:nth-child(even) {
-            background-color: #3a3a3a;
-        }
-        select {
-            background-color: #3a3a3a;
-            color: #ffffff;
-            border: 1px solid #444444;
-            padding: 8px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #ff9800;
-            color: #ffffff;
-            border: none;
-            padding: 10px 15px;
-            margin: 10px 0;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
+
 </head>
 <body>
-    <div class="container">
-        <h1>Участники Киберспортивного Турнира</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Имя игрока</th>
-                    <th>Команда</th>
-                    <th>Игра</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for post in posts %}
-                <tr>
-                    <td>{{ post.name }}</td>
-                    <td>
-                        <select id="team-{{ post.id }}">
-                            <option value="">Выберите команду</option>
-                        </select>
-                    </td>
-                    <td>{{ post.game }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{% url 'A3' %}"><button id="save-teams">Сохранить изменения</button></a>
-    </div>
+<!-- templates/registration/signup.html -->
+{% block content %}
+  <h2>Sign Up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
+  </form>
+{% endblock %}
 
-    <script>
-        const saveTeamsButton = document.getElementById('save-teams');
-
-        saveTeamsButton.addEventListener('click', () => {
-            const teamsData = {};
-
-            const playerRows = document.querySelectorAll('tbody tr');
-            playerRows.forEach(row => {
-                const playerName = row.querySelector('td:first-child').textContent;
-                const selectedTeam = row.querySelector('select').value;
-
-                teamsData[playerName] = selectedTeam;
-            });
-
-
-            console.log(teamsData);
-        });
-    </script>
 </body>
 </html>

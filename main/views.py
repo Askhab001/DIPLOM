@@ -1,57 +1,64 @@
-from django.shortcuts import render
-from .forms import PostForm
+# tournaments/views.py
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Tournament, Participant, Schedule, Result
+from .forms import TournamentForm, ParticipantForm, ScheduleForm, ResultForm
+from django.contrib.auth.decorators import login_required
 
 
-def lord(request):
-    return render(request, 'reg.html')
-
-
-def ford(request):
-    return render(request, 'ford.html')
-
-
-def main(request):
-    return render(request, 'aza1.html')
-
-
-def aza(request):
-    return render(request, 'aza2.html')
-
-
-def asa(request):
-    return render(request, 'aza3.html')
-
-
-def create_post(request):
+@login_required
+def tournament_create(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = TournamentForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('command1')
+            tournament = form.save(commit=False)
+            tournament.organizer = request.user
+            tournament.save()
+            return redirect('command')
     else:
-        form = PostForm()
+        form = TournamentForm()
     return render(request, 'command.html', {'form': form})
 
 
-def post_list(request):
-    posts = LOL.objects.all()
-    return render(request, 'A2.html', {'posts': posts})
+class TournamentListView(ListView):
+    model = Tournament
+    template_name = 'command1.html'
+    context_object_name = 'tournaments'
 
 
-def apa(request):
-    return render(request, 'A1.html')
+class TournamentDetailView(DetailView):
+    model = Tournament
+    template_name = 'command1.html'
+    context_object_name = 'tournament'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['participants'] = Participant.objects.filter(tournament=self.object)
+        context['schedule'] = Schedule.objects.filter(tournament=self.object)
+        context['results'] = Result.objects.filter(tournament=self.object)
+        return context
 
 
-def tournament_list(request):
-    tournaments = Tournament.objects.all()
-    return render(request, 'command.html', {'tournaments': tournaments})
+class TournamentCreateView(CreateView):
+    model = Tournament
+    form_class = TournamentForm
+    template_name = 'A!.html'
+    success_url = reverse_lazy('tournament_list')
+
+    def form_valid(self, form):
+        form.instance.organizer = self.request.user
+        return super().form_valid(form)
 
 
-def tournament_detail(request, pk):
-    tournament = Tournament.objects.get(pk=pk)
-    participants = Participant.objects.filter(tournament=tournament)
-    schedule = Schedule.objects.get(tournament=tournament)
-    results = Result.objects.filter(tournament=tournament)
-    return render(request, 'command1.html',
-                  {'tournament': tournament, 'participants': participants, 'schedule': schedule, 'results': results})
+class TournamentUpdateView(UpdateView):
+    model = Tournament
+    form_class = TournamentForm
+    template_name = 'command.html'
+    success_url = reverse_lazy('tournament_list')
+
+
+class TournamentDeleteView(DeleteView):
+    model = Tournament
+    template_name = 'command1.html'
+    success_url = reverse_lazy('tournament_list')
